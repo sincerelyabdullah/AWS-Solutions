@@ -1,8 +1,10 @@
-# .gitpod.yml - basic AWS setup
-
 tasks:
-  - name: aws-cli
-    before:
+  - name: setup-aws
+    env:
+     AWS_CLI_AUTO_PROMPT=on-partial 
+    init: |
+      sudo apt-get update && sudo apt-get install -y unzip curl
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      sudo ./aws/install
+      unzip -o awscliv2.zip
+      sudo ./aws/install
+      aws --version
